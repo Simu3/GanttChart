@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Gannt Chart</title>
+    <script src="dhtmlxgantt.js" type="text/javascript" charset="utf-8"></script>
+    <!-- <script src="locale_jp.js" type="text/javascript" charset="utf-8"></script> -->
+  	<script src="http://export.dhtmlx.com/gantt/api.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="dhtmlxgantt.css" type="text/css" media="screen" title="no title" charset="utf-8">
+  </head>
+
+  <style type="text/css">
+    html, body{
+      margin:0px;
+      padding:0px;
+      height:100%;
+      overflow:hidden;
+    }
+  </style>
+
+  <body>
+    <input value="Save" type="button" onclick='localStorage.setItem("key", JSON.stringify(gantt.serialize()))' style='margin:20px;'>
+    <input value="Delete" type="button" onclick='localStorage.clear()' style='margin:20px;'>
+    <input value="Export" type="button" onclick='gantt.exportToPDF()' style='margin:20px;'>
+    <div id="gantt_here" style='width:100%; height:100%;'></div>
+    <script type="text/javascript">
+      var data = JSON.parse(localStorage.getItem("key"));
+      gantt.init("gantt_here");
+      gantt.parse(data);
+    </script>
+  </body>
+</html>
